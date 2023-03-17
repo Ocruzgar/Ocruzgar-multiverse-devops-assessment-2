@@ -1,4 +1,5 @@
 from extract import get_input
+
 def test_input_is_list():
     #Testing that results.csv data file can be successfully processed into a list.
     # Arrange
@@ -77,3 +78,24 @@ def test_no_blanks_lines():
         while j<len(i):
             assert i[j]!=""
             j=j+1
+
+
+def test_capitalization():
+    #testing that first and last name are capitalised
+
+    # Arrange
+    filename ="results.csv"
+
+    # Act
+    output = get_input(filename)
+
+    # Assert
+    print(len(output))
+    i=1 #I don't want to check the headers
+    while i< len(output):
+        print(output[i][1])
+        assert str(output[i][1]).istitle()    #Using istitle to account for compound names and last names
+        assert str(output[i][2]).istitle()
+        i=i+1
+    
+
