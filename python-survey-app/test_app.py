@@ -17,7 +17,7 @@ def test_input_is_correct():
 
     filename ="results.csv"
     expected_output = ['user_id','first_name','last_name','answer_1','answer_2','answer_3']
-    expected_n_rows = 22
+    expected_n_rows = 20
 
 
     # Act
@@ -47,3 +47,33 @@ def test_duplicates_remove():
             assert output_without_duplicates[i][0]!= output_without_duplicates[j][0]
             j=j+1
         i=i+1
+
+def test_no_ID_blanks():
+    #testing that there are lines with blank user_id
+
+    # Arrange
+    filename ="results.csv"
+
+    # Act
+    output_without_blanks = get_input(filename)
+
+    # Assert
+    for i in output_without_blanks:
+        assert i[0]!=""
+
+
+def test_no_blanks_lines():
+    #testing that there are not lines with user_id but without any answer
+
+    # Arrange
+    filename ="results.csv"
+
+    # Act
+    output_without_blanks = get_input(filename)
+
+    # Assert
+    for i in output_without_blanks:
+        j=1 #starting at 1 as user_id will have a number
+        while j<len(i):
+            assert i[j]!=""
+            j=j+1
