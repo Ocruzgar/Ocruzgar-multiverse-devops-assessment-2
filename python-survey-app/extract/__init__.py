@@ -4,19 +4,24 @@ def get_input(filename):
         for line in f.readlines():
             list = line.strip().split(',') #clean the /n at the end of the line and separate the line in an array by ,
             
-            #checking if the user_id for this line already exist in rows, that is not empty and that has answers
-            is_a_duplicate = is_duplicate(rows,list[0])
-            has_user_id = list[0]!=""
-            has_answers = not is_empty(list[1:])
-
-            if not is_a_duplicate and has_user_id and has_answers: 
-               
-                if list[0]!='user_id':                    #Capitalizing name and last names but not the headers
-                    list[1]=list[1].title()
-                    list[2]=list[2].title()
+            if list[0]=='user_id':
                 rows.append(list)
-
-    print (rows)
+            else:
+                #checking if the user_id for this line already exist in rows
+                is_a_duplicate = is_duplicate(rows,list[0])
+                #User_is is not empty
+                has_user_id = list[0]!=""
+                #line has answers
+                has_answers = not is_empty(list[1:])
+            
+                if not is_a_duplicate and has_user_id and has_answers: 
+                    
+                    #answer3 is between correct values
+                    answer3_right_values = check_between_values(1,10,int(list[5]))
+                    if answer3_right_values:
+                        list[1]=list[1].title()
+                        list[2]=list[2].title()
+                        rows.append(list)
     return rows
 
 def is_duplicate (list, to_find):
@@ -37,3 +42,10 @@ def is_empty(list):
             is_empty = False
 
     return is_empty
+
+def check_between_values(lower_value, upper_value,to_chec):
+    if to_chec >=lower_value and to_chec<=upper_value:
+        return True
+    else:
+        return False
+        
