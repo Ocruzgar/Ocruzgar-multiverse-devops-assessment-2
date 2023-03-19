@@ -1,4 +1,5 @@
 from extract import get_input
+from filecmp import cmp
 
 def test_input_is_list():
     #Testing that results.csv data file can be successfully processed into a list.
@@ -114,3 +115,20 @@ def test_answer3():
         assert int(output[i][5])<=10
         assert int(output[i][5])>=1
         i=i+1
+
+
+def test_output():
+    #testing that a csv file has been create with the clean input
+
+    # Arrange
+    input_file ="results.csv"
+    output_file ="clean_results.csv"
+    compare_file ="clean_results_test.csv"
+
+    # Act
+    get_input(input_file)
+    
+    # Assert 
+    assert cmp(output_file,compare_file,shallow=False)
+    
+    
