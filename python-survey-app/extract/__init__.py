@@ -74,3 +74,10 @@ def del_last_empty_line_csv(file):
         f.seek(0, os.SEEK_END)                #position at the end of the file
         f.seek(f.tell()-2, os.SEEK_SET)       #move back 2 character
         f.truncate()                          #truncate from position  
+
+
+def get_output(filename):
+    #read and print the file on screen line by line
+    with open(filename, 'r') as f:
+        for line in f.readlines():
+            print(line)

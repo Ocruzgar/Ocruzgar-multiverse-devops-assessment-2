@@ -1,4 +1,5 @@
 from extract import get_input
+from extract import get_output
 from filecmp import cmp
 
 def test_input_is_list():
@@ -117,7 +118,7 @@ def test_answer3():
         i=i+1
 
 
-def test_output():
+def test_output_file():
     #testing that a csv file has been create with the clean input
 
     # Arrange
@@ -131,4 +132,35 @@ def test_output():
     # Assert 
     assert cmp(output_file,compare_file,shallow=False)
     
+def test_output_print(capsys):
+    #testing that the file is print on screen
+
+    #Arrange
+    
+    file = 'clean_results.csv'
+    expected_file = 'clean_results_test.csv'
+    expected_output = []
+    with open(expected_file, 'r') as f:
+        for line in f.readlines():
+            expected_output.append(line.strip())
+    
+
+
+
+    #Act
+    get_output(file)
+    captured = capsys.readouterr()
+    output_print = captured.out.strip().split('\n\n')
+
+
+    #Assert
+    
+    i = 0
+    
+    while i < len(output_print):
+        assert output_print[i] == expected_output[i]
+        print(output_print[i])
+        print(expected_output[i])
+        i= i+1
+
     
