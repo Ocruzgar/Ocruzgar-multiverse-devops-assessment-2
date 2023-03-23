@@ -3,7 +3,7 @@ name: Multiverse CI/CD Workflow
 on:
   push:
   pull_request:
-  types: [approved, opened, edited, reopened]
+    types: [approved, opened, edited, reopened]
   workflow_dispatch:
 
 jobs:
