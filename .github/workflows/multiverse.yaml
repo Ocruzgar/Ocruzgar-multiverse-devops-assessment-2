@@ -25,6 +25,12 @@ jobs:
     - name: Install Pytest
       run: pip install pytest pytest-cov
 
+    - name: Install dos2unix
+      run: pip install dos2unix
+
+    - name: Run dos2unix
+      run: dos2unix clean_results_test.csv
+
     - name: Run Pytest
       run: pytest
       working-directory: python-survey-app
