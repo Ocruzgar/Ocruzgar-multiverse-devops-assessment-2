@@ -27,7 +27,7 @@ def get_input(filename):
                         list[2]=list[2].title()
                         rows.append(list)
                         append_csv(output_file,list)
-        del_last_empty_line_csv(output_file)
+        #del_last_empty_line_csv(output_file)
     return rows
 
 def is_duplicate (list, to_find):
