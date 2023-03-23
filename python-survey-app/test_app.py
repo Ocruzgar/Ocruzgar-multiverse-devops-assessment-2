@@ -130,6 +130,8 @@ def test_output_file():
     get_input(input_file)
     
     # Assert
+    get_output(output_file)
+    get_output(compare_file)
     assert cmp(output_file,compare_file,shallow=False)
     
 def test_output_print(capsys):
@@ -145,8 +147,6 @@ def test_output_print(capsys):
             expected_output.append(line.strip())
     
 
-
-
     #Act
     get_output(file)
     captured = capsys.readouterr()
@@ -159,8 +159,6 @@ def test_output_print(capsys):
     
     while i < len(output_print):
         assert output_print[i] == expected_output[i]
-        print(output_print[i])
-        print(expected_output[i])
         i= i+1
 
     
