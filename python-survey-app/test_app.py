@@ -130,6 +130,9 @@ def test_output_file():
     get_input(input_file)
     
     # Assert 
+    print(output_file)
+    print("*************************************************")
+    print(compare_file)
     assert cmp(output_file,compare_file,shallow=False)
     
 def test_output_print(capsys):
