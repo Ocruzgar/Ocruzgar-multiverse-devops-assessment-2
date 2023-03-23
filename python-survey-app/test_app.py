@@ -1,4 +1,5 @@
 from extract import get_input
+
 def test_input_is_list():
     #Testing that results.csv data file can be successfully processed into a list.
     # Arrange
@@ -17,7 +18,7 @@ def test_input_is_correct():
 
     filename ="results.csv"
     expected_output = ['user_id','first_name','last_name','answer_1','answer_2','answer_3']
-    expected_n_rows = 22
+    expected_n_rows = 17
 
 
     # Act
@@ -46,4 +47,70 @@ def test_duplicates_remove():
         while j < len(output_without_duplicates):
             assert output_without_duplicates[i][0]!= output_without_duplicates[j][0]
             j=j+1
+        i=i+1
+
+def test_no_ID_blanks():
+    #testing that there are lines with blank user_id
+
+    # Arrange
+    filename ="results.csv"
+
+    # Act
+    output_without_blanks = get_input(filename)
+
+    # Assert
+    for i in output_without_blanks:
+        assert i[0]!=""
+
+
+def test_no_blanks_lines():
+    #testing that there are not lines with user_id but without any answer
+
+    # Arrange
+    filename ="results.csv"
+
+    # Act
+    output_without_blanks = get_input(filename)
+
+    # Assert
+    for i in output_without_blanks:
+        j=1 #starting at 1 as user_id will have a number
+        while j<len(i):
+            assert i[j]!=""
+            j=j+1
+
+
+def test_capitalization():
+    #testing that first and last name are capitalised
+
+    # Arrange
+    filename ="results.csv"
+
+    # Act
+    output = get_input(filename)
+
+    # Assert
+    i=1 #I don't want to check the headers
+    while i< len(output):
+        assert output[i][1].istitle()    #Using istitle to account for compound names and last names
+        assert output[i][2].istitle()
+        i=i+1
+    
+
+def test_answer3():
+    #testing that answer 3 has values between 1 and 10
+
+    # Arrange
+    filename ="results.csv"
+
+    # Act
+    output = get_input(filename)
+
+    # Assert
+
+    i=1 #I don't want to check the headers
+
+    while i< len(output):
+        assert int(output[i][5])<=10
+        assert int(output[i][5])>=1
         i=i+1
