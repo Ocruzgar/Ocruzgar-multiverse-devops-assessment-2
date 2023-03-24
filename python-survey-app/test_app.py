@@ -124,13 +124,33 @@ def test_output_file():
     # Arrange
     input_file ="results.csv"
     output_file ="clean_results.csv"
-    compare_file ="clean_results_test.csv"
+    compare_file =["user_id,first_name,last_name,answer_1,answer_2,answer_3",
+                   "1,Charissa,Clark,yes,c,7",
+                   "2,Richard,Mckinney,yes,b,7",
+                   "3,Patience,Reeves,yes,b,9",
+                   "5,India,Gentry,yes,c,7",
+                   "6,Abra,Sheppard,yes,b,6",
+                   "8,Diana,Cameron,yes,b,9",
+                    "9,Alexander,Herring,no,b,4",
+                    "11,Uma,Glass,yes,a,2",
+                    "12,Brittany,Weeks,yes,b,8",
+                    "13,Roth,Stout,yes,c,10",
+                    "14,Amos,Daniel,yes,a,5",
+                    "16,Eugenia,Nichols,yes,b,6",
+                    "17,Dieter,Alvarado,yes,b,6",
+                    "18,Roary,Frank,yes,c,7",
+                    "19,Ulric,Hensley,no,b,9",
+                    "20,Felicia,Wilkins,yes,b,8"]
 
     # Act
     get_input(input_file)
     
-    # Assert 
-    assert cmp(output_file,compare_file,shallow=False)
+    # Assert
+    i = 0
+    with open(output_file, 'r') as f:
+        for line in f.readlines():
+            assert line.strip() == compare_file[i]
+            i= i+1
     
 def test_output_print(capsys):
     #testing that the file is print on screen
@@ -145,8 +165,6 @@ def test_output_print(capsys):
             expected_output.append(line.strip())
     
 
-
-
     #Act
     get_output(file)
     captured = capsys.readouterr()
@@ -159,8 +177,6 @@ def test_output_print(capsys):
     
     while i < len(output_print):
         assert output_print[i] == expected_output[i]
-        print(output_print[i])
-        print(expected_output[i])
         i= i+1
 
     
