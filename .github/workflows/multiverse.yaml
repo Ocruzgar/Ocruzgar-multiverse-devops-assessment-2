@@ -28,7 +28,6 @@ jobs:
     - name: Run Pytest
       run: pytest
       working-directory: python-survey-app
-
 terraform:
   name: Run Terraform
   runs-on: ubuntu-latest
