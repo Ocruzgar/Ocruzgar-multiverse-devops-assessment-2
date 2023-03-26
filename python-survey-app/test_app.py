@@ -168,7 +168,7 @@ def test_output_print(capsys):
     #Act
     get_output(file)
     captured = capsys.readouterr()
-    output_print = captured.out.strip().split('\n\n')
+    output_print = captured.out.strip().split('\n')
 
 
     #Assert
