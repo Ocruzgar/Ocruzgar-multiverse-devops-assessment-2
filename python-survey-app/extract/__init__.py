@@ -82,11 +82,4 @@ def get_output(filename):
         for line in f.readlines():
             list = line.strip().split(',')
             print('%-7s %-15s %-15s %8s %8s %8s' % (list[0],list[1],list[2],list[3],list[4],list[5]))
-#            list = line.strip().split(',')
-#            if i==0: 
-#                    print('%10s' % list)
-#            else:
-
-            #print(line)
-#            i= i+1
 

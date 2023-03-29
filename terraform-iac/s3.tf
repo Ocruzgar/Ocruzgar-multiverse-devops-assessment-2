@@ -20,17 +20,16 @@ resource "aws_s3_object" "this" {
 }
 
 # Zip the code
-#data "archive_file" "source" {
-#  type        = "zip"
-#  source_dir  = "../python-survey-app"
-#  output_path = "../code.zip"
-#}
+data "archive_file" "source" {
+  type        = "zip"
+  source_dir  = "../python-survey-app"
+  output_path = "../code.zip"
+}
 
 #upload the code
-#resource "aws_s3_object" "code" {
-#    bucket = aws_s3_bucket.this.id
-#    key = "code.zip"
-#    source = "${data.archive_file.source.output_path}" # its mean it depended on zip
-#    etag = filemd5("${data.archive_file.source.output_path}")
-#}
-
+resource "aws_s3_object" "code" {
+    bucket = aws_s3_bucket.this.id
+    key = "code.zip"
+    source = "${data.archive_file.source.output_path}" # its mean it depended on zip
+    etag = filemd5("${data.archive_file.source.output_path}")
+}
